@@ -16,7 +16,6 @@ app.use("/api/patients", require("./routes/patientRoutes"));
 app.use("/api/doctors", require("./routes/doctorRoutes"));
 app.use("/api/mappings", require("./routes/mappingRoutes"));
 
-// DB Sync & Server Start
 sequelize.sync({ alter: true }).then(() => {
   app.listen(process.env.PORT, () => {
     console.log(`Server running at http://localhost:${process.env.PORT}`);

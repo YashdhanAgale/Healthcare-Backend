@@ -1,0 +1,27 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS-related files
+.DS_Store
+Thumbs.db
+
+# Sequelize-specific
+*.sqlite
+*.sqlite3
+
+# Editor folders/files
+.vscode/
+.idea/
+*.swp
+
+# Build and cache
+dist/
+.cache/

@@ -8,6 +8,7 @@ const Mapping = require("./Mapping");
 User.hasMany(Patient, { foreignKey: "userId" });
 Patient.belongsTo(User, { foreignKey: "userId" });
 
+// Many-to-Many
 Patient.belongsToMany(Doctor, {
   through: Mapping,
   foreignKey: "patientId",
@@ -19,6 +20,10 @@ Doctor.belongsToMany(Patient, {
   foreignKey: "doctorId",
   otherKey: "patientId",
 });
+
+// 👇 Needed for Mapping.findAll({ include: [...] })
+Mapping.belongsTo(Patient, { as: "patient", foreignKey: "patientId" });
+Mapping.belongsTo(Doctor, { as: "doctor", foreignKey: "doctorId" });
 
 module.exports = {
   sequelize,

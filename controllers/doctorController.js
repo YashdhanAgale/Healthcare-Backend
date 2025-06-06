@@ -4,6 +4,12 @@ exports.createDoctor = async (req, res) => {
   try {
     const { name, specialization } = req.body;
 
+    if (name.length === 0 || specialization.length === 0) {
+      return res.status(401).json({
+        message: "cannot insert empty strings please add valid details",
+      });
+    }
+
     const doctor = await Doctor.create({ name, specialization });
     res.status(201).json({ msg: "Doctor added", doctor });
   } catch (err) {
@@ -34,6 +40,13 @@ exports.getDoctorById = async (req, res) => {
 exports.updateDoctor = async (req, res) => {
   try {
     const { name, specialization } = req.body;
+
+    if (name.length === 0 || specialization.length === 0) {
+      return res.status(401).json({
+        message:
+          "Cant update empty strings please provide proper Name and Specialization ",
+      });
+    }
     const doctor = await Doctor.findByPk(req.params.id);
 
     if (!doctor) return res.status(404).json({ msg: "Doctor not found" });
